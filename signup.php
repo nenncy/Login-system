@@ -70,7 +70,7 @@ $emailErr =" ";
             $subject="Email activation";
             $body="Hi, $username. Click to activate your account
              http://localhost/signup/activate.php?token=$token";
-            $headers="From: nency@gmail.com";
+            $headers="From: nencyvpatel3010@gmail.com";
             if(mail($email,$subject,$body,$headers))
             {
               $_SESSION['msg']="Check your mail to activate your 

@@ -20,7 +20,7 @@
    if(isset($_POST['signin'])){
        $email=$_POST['email'];
        $password=$_POST['password'];
-       $email_search="select * from registration where email='$email' ";
+       $email_search="select * from registration where email='$email' and status='active' ";
        $query=mysqli_query($con,$email_search);
        $email_count=mysqli_num_rows($query);
        if($email_count)
@@ -36,7 +36,7 @@
             alert("Login succesfully");
             </script>
             <?php
-            header("Location:inner-page.html");
+            header("Location:home.php");
                  
            }
            else{
@@ -64,20 +64,33 @@
                      <img src="image/images/login.svg" class="img-fluid"></img>
              
                  </div>
+
                  <div class="col-md-6 mb-3">
+                 <div>
+                        <p class="bg-success text-white px-4 "style="padding: 1%;,margin:1%"><?php 
+                          
+                          if(isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                          }
+                          else{
+                            echo $_SESSION['msg']="You are logged out!";
+                          }
+                        
+                          ?> </p>
+                   </div>
                      <h2 class="signup-text mb-3">Sign In</h2>
                     <Form method="POST">
                      
                      <div class="form-group"> 
                         <label htmlFor="email"><i class="zmdi zmdi-email"></i></label>
                         <input type="text" name="email"  autoComplete="off" placeholder="Your Email" class="form-control" 
-                         
+                         required
                         ></input>
                      </div>
                      
                      <div class="form-group"> 
                         <label htmlFor="password"><i class="zmdi zmdi-lock"></i></label>
-                        <input type="text" name="password"  autoComplete="off" placeholder="Your Passwprd" class="form-control" >
+                        <input type="text" name="password"  autoComplete="off" placeholder="Your Passwprd" class="form-control" required>
                             
                         </input>
                      
@@ -86,6 +99,8 @@
                      <input type="submit" name="signin"  autoComplete="off"  class="btn-class-form" value="Login" ></input>
                      </div>
                     </Form>
+                   
+
                  </div>
 
            </div>
